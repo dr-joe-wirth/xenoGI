@@ -471,3 +471,26 @@ def fixSeq(sequence, protAlignment):
             y += 1
     return result
 
+
+def createAlignments(paramD,alignStem,strainHeader,genesO,workDir,musclePath,numProcesses,orthoTL):
+    '''Create alignments for all the ortho groups in orthoTL using MUSCLE.'''
+
+    # set up argumentL
+
+    argumentL = [([],[],paramD,alignStem,strainHeader,genesO,workDir,musclePath) for i in range(numProcesses)]
+
+    counter = 0
+    for orthoGroupNum,orthoT in orthoTL:
+        # we use counter for placement in argumentL since at least in
+        # the case of single gene families, some will be missing
+        orthoGroupNumStr = str(orthoGroupNum).zfill(6) # pad w/ 0's so ls will display in right order
+        argumentL[counter%numProcesses][0].append(orthoGroupNumStr)
+        argumentL[counter%numProcesses][1].append(orthoT)
+        counter += 1
+        
+    # run
+    with Pool(processes=numProcesses) as p:
+        for _ in p.imap_unordered(alignOneOrthoTGroup, argumentL):
+            pass
+
+    return
