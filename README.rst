@@ -4,6 +4,15 @@ xenoGI
 
 Code for reconstructing genome evolution in clades of microbes.
 
+Note
+  This fork was created to provide a stable version of xenoGI_ for PHANTASM_. It is `xenoGI v3.1.0`_ with the addition of the function xenoGI.trees.createAlignments_.
+  
+.. _xenoGI: https://github.com/ecbush/xenoGI
+.. _PHANTASM: https://github.com/dr-joe-wirth/phantasm
+.. _xenoGI v3.1.0: https://github.com/ecbush/xenoGI/releases/tag/v3.1.0
+.. _xenoGI.trees.createAlignments: https://github.com/dr-joe-wirth/xenoGI/blob/master/xenoGI/trees.py#L475
+
+
 Requirements
 ------------
 
