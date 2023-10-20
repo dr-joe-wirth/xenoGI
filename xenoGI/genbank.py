@@ -52,7 +52,7 @@ def parseGenbankSingleFile(geneNum,fileName,dnaBasedGeneTrees,fileNameMapD,geneI
     # start a block for this species in geneInfoFile
     geneInfoFile.write("# "+speciesName+"\n")
     
-    inFile = open(fileName, 'rU')
+    inFile = open(fileName, 'r')
     protFastaOutName = fastaOutFileDir + speciesName + "_prot.fa"
     protFastaOutFile = open(protFastaOutName, 'w')
 
@@ -144,7 +144,7 @@ def parseGenbankSingleFile(geneNum,fileName,dnaBasedGeneTrees,fileNameMapD,geneI
 def verifyProteinAnnotations(fileName):
     '''Run through genbank file fileName verifying that it contains
 protein annotations. Return True if it does, False if not.'''
-    with open(fileName, 'rU') as f:
+    with open(fileName, 'r') as f:
         for record in SeqIO.parse(f, "genbank"):
             # iterate through the genes on the chromosome
             for feature in record.features:
@@ -160,7 +160,7 @@ def verifyDnaAnnotations(fileName):
 annotations are 3x longer than protein annotations. Return True if so
 in all cases, False otherwise.
     '''
-    with open(fileName, 'rU') as f:
+    with open(fileName, 'r') as f:
         for record in SeqIO.parse(f, "genbank"):
             # iterate through the genes on the chromosome
             for feature in record.features:
